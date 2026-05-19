@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>InsightFlow · Estratégia e Dados que Vendem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A1F2C;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #0057FF;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(0, 87, 255, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #003fcc;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(0, 87, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #0057FF;
+            color: #0057FF;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #0057FF;
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #0057FF;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2D3142;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #0057FF;
+        }
+
+        .hero {
+            padding: 60px 0 80px 0;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background: #EFF4FF;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0057FF;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #0057FF;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #4a4f6e;
+            margin-bottom: 32px;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .stat-item p {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #5a607f;
+        }
+
+        .hero-image {
+            flex: 1;
+            background: linear-gradient(135deg, #EFF4FF 0%, #F9F9FF 100%);
+            border-radius: 40px;
+            padding: 20px;
+            text-align: center;
+        }
+        .hero-image img {
+            max-width: 100%;
+            width: 380px;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.05));
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 56px auto;
+        }
+        .section-header h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .section-header p {
+            color: #5a607f;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 28px;
+            flex: 1 1 260px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f2f9;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: #cdddff;
+            box-shadow: 0 28px 40px -14px rgba(0,87,255,0.12);
+        }
+        .service-icon {
+            font-size: 2.4rem;
+            color: #0057FF;
+            margin-bottom: 24px;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            color: #4e546c;
+            line-height: 1.45;
+        }
+
+        .testimonials {
+            background-color: #F9FAFE;
+        }
+        .testimonial-grid {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 30px;
+            padding: 32px;
+            flex: 1;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.03);
+        }
+        .stars {
+            color: #FFB800;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+        .testimonial-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            font-weight: 450;
+        }
+        .client {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .client-avatar {
+            width: 48px;
+            height: 48px;
+            background: #eef3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0057FF;
+        }
+        .client h4 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section {
+            background: linear-gradient(110deg, #001f54 0%, #002a7c 100%);
+            border-radius: 48px;
+            margin: 40px 0;
+            padding: 64px 48px;
+            text-align: center;
+            color: white;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .cta-section p {
+            max-width: 550px;
+            margin: 0 auto 32px auto;
+            opacity: 0.85;
+        }
+        .cta-section .btn {
+            background-color: white;
+            color: #002a7c;
+            box-shadow: none;
+        }
+        .cta-section .btn:hover {
+            background-color: #ffeaa7;
+            transform: translateY(-2px);
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.1);
+            padding: 48px 40px;
+            margin: 40px 0 80px;
+        }
+        .form-grid {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .form-info {
+            flex: 1;
+        }
+        .form-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .contact-method {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 32px;
+        }
+        .form-fields {
+            flex: 1;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 30px;
+            border: 1px solid #e2e6f0;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #0057FF;
+            box-shadow: 0 0 0 3px rgba(0,87,255,0.2);
+        }
+        textarea {
+            border-radius: 28px;
+            resize: vertical;
+        }
+
+        footer {
+            border-top: 1px solid #ecf0f5;
+            padding: 48px 0 32px;
+            text-align: center;
+            color: #6c7189;
+        }
+
+        @media (max-width: 850px) {
+            .navbar {
+                flex-direction: column;
+                gap: 18px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                max-width: 100%;
+            }
+            .hero-stats {
+                flex-wrap: wrap;
+            }
+            .container {
+                padding: 0 24px;
+            }
+            .cta-section {
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">Insight<span>Flow</span></div>
+            <div class="nav-links">
+                <a href="#">Serviços</a>
+                <a href="#">Cases</a>
+                <a href="#">Blog</a>
+                <a href="#" class="btn-outline btn" style="padding: 8px 22px;">Contato</a>
+            </div>
+        </div>
+
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-chart-line"></i>  +87% ROI médio em 2024
+                </div>
+                <h1>Dados que geram <span>resultados reais</span> para sua marca</h1>
+                <p>Criamos estratégias de marketing orientadas por performance, automação e criatividade. Aumente sua conversão com quem entende de métrica de verdade.</p>
+                <a href="#form" class="btn"><i class="fas fa-rocket"></i> Quero crescer agora</a>
+                <div class="hero-stats">
+                    <div class="stat-item"><h3>300+</h3><p>clientes ativos</p></div>
+                    <div class="stat-item"><h3>5x</h3><p>crescimento médio</p></div>
+                    <div class="stat-item"><h3>98%</h3><p>recomendação NPS</p></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div style="font-size: 10rem; color: #0057FF;"><i class="fas fa-chart-simple"></i></div>
+                <p style="margin-top: 12px; font-weight: 500;">Marketing Inteligente + Analytics</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>O que entregamos de <span style="color:#0057FF">verdade</span></h2>
+                <p>Soluções completas que conectam sua marca ao público certo, na hora certa.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+                    <h3>SEO Data Driven</h3>
+                    <p>Estratégia baseada em dados reais, ranqueamento sustentável e tráfego qualificado.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-ad"></i></div>
+                    <h3>Performance Ads</h3>
+                    <p>Google Ads, Meta ADS com gestão full funnel e otimização contínua por IA.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-envelope-open-text"></i></div>
+                    <h3>Automação & CRM</h3>
+                    <p>Jornadas personalizadas, email marketing e nutrição que converte leads.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-pen-ruler"></i></div>
+                    <h3>Conteúdo Estratégico</h3>
+                    <p>Copywriting persuasivo + branding. Storytelling que vende sem empurrar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonials section">
+        <div class="container">
+            <div class="section-header">
+                <h2>O que nossos clientes <span style="color:#0057FF">falam</span></h2>
+                <p>Resultados reais em empresas de diferentes segmentos</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"A InsightFlow dobrou nosso tráfego orgânico em 4 meses. O time é extremamente analítico e criativo ao mesmo tempo. Recomendo de olhos fechados."</p>
+                    <div class="client">
+                        <div class="client-avatar"><i class="fas fa-user-tie"></i></div>
+                        <div><h4>Camila Rocha</h4><span style="font-size:0.75rem;">CMO, E-co Holding</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"O ROI das campanhas de Google Ads aumentou 230% depois da otimização da agência. Profissionais diferenciados, sem enrolação."</p>
+                    <div class="client">
+                        <div class="client-avatar"><i class="fas fa-laptop-code"></i></div>
+                        <div><h4>Rafael Menezes</h4><span style="font-size:0.75rem;">Sócio, TechNex</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Automação de e-mail + CRM nunca funcionou tão bem. Aumentamos a retenção em 34% no primeiro trimestre. Simplesmente fantástico."</p>
+                    <div class="client">
+                        <div class="client-avatar"><i class="fas fa-crown"></i></div>
+                        <div><h4>Juliana Alves</h4><span style="font-size:0.75rem;">CEO, BelezaLab</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="form">
+        <div class="form-section">
+            <div class="form-grid">
+                <div class="form-info">
+                    <h3>Vamos escalar seus resultados?</h3>
+                    <p>Preencha o formulário e nosso time de especialistas entra em contato para um diagnóstico gratuito de marketing.</p>
+                    <div class="contact-method">
+                        <i class="fas fa-phone-alt" style="color:#0057FF; font-size: 1.8rem;"></i>
+                        <div><strong>Atendimento rápido</strong><br>Retorno em até 2h úteis</div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-calendar-check" style="color:#0057FF; font-size: 1.8rem;"></i>
+                        <div><strong>Sem compromisso</strong><br>Estratégia personalizada</div>
+                    </div>
+                </div>
+                <div class="form-fields">
+                    <form id="leadForm" action="#" method="post">
+                        <div class="input-group">
+                            <input type="text" placeholder="Nome completo" id="nome" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="E-mail corporativo" id="email" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" placeholder="Telefone/WhatsApp" id="telefone">
+                        </div>
+                        <div class="input-group">
+                            <select id="servico">
+                                <option value="">Principal objetivo →</option>
+                                <option>Gerar mais leads qualificados</option>
+                                <option>Aumentar vendas online</option>
+                                <option>Melhorar tráfego e SEO</option>
+                                <option>Automação e CRM</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <textarea rows="3" placeholder="Fale um pouco sobre seu negócio..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width:100%; justify-content:center;"><i class="fas fa-arrow-right"></i> Receber diagnóstico gratuito</button>
+                        <p style="font-size: 0.75rem; margin-top: 16px; text-align:center;">🔒 Seus dados estão seguros. Sem spam.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cta-section">
+            <h2>Pronto para decolar suas conversões?</h2>
+            <p>Fale com um especialista hoje mesmo e receba um plano de marketing sob medida para seu negócio.</p>
+            <a href="#form" class="btn"><i class="fab fa-whatsapp"></i> Quero meu plano personalizado</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px;">Insight<span>Flow</span></div>
+            <p style="max-width: 500px; margin: 0 auto 24px auto;">Estratégia, criatividade e dados para transformar sua presença digital em resultados mensuráveis.</p>
+            <div style="display: flex; justify-content: center; gap: 28px; margin-bottom: 28px;">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-x-twitter"></i>
+                <i class="fab fa-tiktok"></i>
+            </div>
+            <p>© 2025 InsightFlow · Marketing de performance · Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('leadForm');
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nome = document.getElementById('nome').value.trim();
+                if(nome === "") {
+                    alert("Por favor, preencha seu nome :)");
+                    return;
+                }
+                alert(`✨ Obrigado, ${nome}! Em breve nosso time de especialistas entrará em contato. Prepare-se para escalar resultados!`);
+                form.reset();
+            });
+        }
+    </script>
+</body>
+</html>
